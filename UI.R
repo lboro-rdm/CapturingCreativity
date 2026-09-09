@@ -1,0 +1,101 @@
+library(shiny)
+library(bslib)
+
+# ---- Data (used here just to build the Year filter choices) --------------
+sessions <- read.csv("sessions.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
+str(sessions)
+years <- sort(unique(sessions$year), decreasing = TRUE)
+
+conference_name <- "Capturing Creativity"
+conference_tagline <- "Organised and hosted by Bath Spa University and Loughborough University"
+conference_dates <- "October/November, 2026"
+conference_location <- "Online, UK timezone"
+
+# ---- Tabs ------------------------------------------------------------------
+
+home_tab <- tabPanel(
+  "Home",
+  div(
+    class = "hero",
+    h1(conference_name),
+    p(conference_tagline),
+    p(strong(conference_dates), " \u00b7 ", conference_location)
+  ),
+  fluidRow(
+    column(4,
+           h4("What is it?"),
+           p("A seminar series promoting best practice around capturing and showcasing creative practice research via university research repositories, and the submission of this research to the REF.")
+    ),
+    column(4,
+           h4("Who should attend?"),
+           p("Librarians, REF support staff, and practice researchers in the UK and beyond.")
+    ),
+    column(4,
+           h4("Browse past talks"),
+           p("Recordings from 2023-2025 are available to view. Browse by year, speaker or topic."),
+           actionButton("goto_archive", "Go to Archive", class = "btn-sm")
+    )
+  ),
+  fluidRow(
+    column(2),
+    column(4,
+           h4("Keep the conversation going"),
+           p(tags$a(href = "https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=ARTS-PRACTICE-LED-RESEARCH",
+                    target = "_blank", "Sign up to the JISC Mailing List")),
+           p(tags$a(href = "https://www.zotero.org/groups/4944237/arts-practice-led-research/library",
+                    target = "_blank", "Explore the Zotero Library"))
+    ),
+    column(4,
+           h4("Tell us what you think"),
+           p("Placeholder for MS Forms")
+           ),
+    column(2)
+  )
+)
+
+program_tab <- tabPanel(
+  "Program",
+  h2("This Year's Program", class = "section-title"),
+  p("Forthcoming."),
+  tags$em("Forthcoming.")
+)
+
+archive_tab <- tabPanel(
+  "Archive",
+  value = "archive",
+  h2("Recordings Archive", class = "section-title"),
+  sidebarLayout(
+    sidebarPanel(
+      width = 3,
+      selectInput("year_filter", "Year", choices = c("All years", years)),
+      textInput("search_filter", "Search title or speaker", placeholder = "e.g. Shiny, Jane Doe"),
+      textInput("topic_filter", "Search topic", placeholder = "e.g. REF"),
+    ),
+    mainPanel(
+      width = 9,
+      uiOutput("session_list")
+    )
+  )
+)
+
+about_tab <- tabPanel(
+  "About",
+  h2("About Capturing Creativity", class = "section-title"),
+  p("Capturing Creativity was conceptualised by Claire Drake (Bath Spa University), who saw the need for reporting more robustly on creative outputs, also called practice-led outputs. Together with Gareth Cole (who was a Loughborough University at the time, now at Exeter University), they hosted the first seminar series in 2023."),
+  p("The success of the first year led to a repeat in 2024 and 2025, with Lara Skelly (Loughborough Univeristy) taking over from Cole in 2025. Katie Fraser (Loughborough University) joins the team in 2026."),
+  h4("Contact"),
+  p("Claire Drake via <repositories at bathspa.ac.uk>")
+)
+
+# ---- Page --------------------------------------------------------------
+
+ui <- page_navbar(
+  title = conference_name,
+  theme = bs_theme(version = 5, base_font = font_google("Inter")),
+  header = tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+  home_tab,
+  program_tab,
+  archive_tab,
+  about_tab,
+  id = "main_nav"
+)
