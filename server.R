@@ -6,7 +6,6 @@ library(bslib)
 # Leave doi blank for talks that don't have a published record yet;
 # the archive will automatically show a "Coming soon" badge instead.
 sessions <- read.csv("sessions.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
-str(sessions)
 
 # Build a full DOI link whether the column holds a bare DOI (10.xxxx/...)
 # or an already-complete URL.

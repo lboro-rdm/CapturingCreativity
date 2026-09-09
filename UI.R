@@ -3,7 +3,6 @@ library(bslib)
 
 # ---- Data (used here just to build the Year filter choices) --------------
 sessions <- read.csv("sessions.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
-str(sessions)
 years <- sort(unique(sessions$year), decreasing = TRUE)
 
 conference_name <- "Capturing Creativity"
@@ -32,7 +31,7 @@ home_tab <- tabPanel(
     ),
     column(4,
            h4("Browse past talks"),
-           p("Recordings from 2023-2025 are available to view. Browse by year, speaker or topic."),
+           p("Slides and recordings from 2023 onwards. Browse by year, speaker or topic."),
            actionButton("goto_archive", "Go to Archive", class = "btn-sm")
     )
   ),
@@ -81,7 +80,7 @@ archive_tab <- tabPanel(
 about_tab <- tabPanel(
   "About",
   h2("About Capturing Creativity", class = "section-title"),
-  p("Capturing Creativity was conceptualised by Claire Drake (Bath Spa University), who saw the need for reporting more robustly on creative outputs, also called practice-led outputs. Together with Gareth Cole (who was a Loughborough University at the time, now at Exeter University), they hosted the first seminar series in 2023."),
+  p("Capturing Creativity was conceptualised by Claire Drake (Bath Spa University), who saw the need for reporting more robustly on Arts creative practice research outputs. Together with Gareth Cole (who was a Loughborough University at the time, now at Exeter University), they hosted the first seminar series in 2023."),
   p("The success of the first year led to a repeat in 2024 and 2025, with Lara Skelly (Loughborough Univeristy) taking over from Cole in 2025. Katie Fraser (Loughborough University) joins the team in 2026."),
   h4("Contact"),
   p("Claire Drake via <repositories at bathspa.ac.uk>")
