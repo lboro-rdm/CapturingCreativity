@@ -1,5 +1,6 @@
 library(shiny)
 library(bslib)
+library(DT)
 
 # ---- Data (used here just to build the Year filter choices) --------------
 sessions <- read.csv("sessions.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
@@ -9,9 +10,19 @@ conference_name <- "Capturing Creativity"
 conference_tagline <- "Organised and hosted by Bath Spa University and Loughborough University"
 conference_dates <- "October/November, 2026"
 conference_location <- "Online, UK timezone"
+all_topics <- sort(unique(trimws(unlist(strsplit(sessions$topic, ";")))))
+
+site_footer <- tags$div(
+  class = "footer",
+  fluidRow(
+    column(12,
+           tags$a(href = "https://doi.org/10.17028/rd.lboro.28525481",
+                  "Accessibility Statement")
+    )
+  )
+)
 
 # ---- Tabs ------------------------------------------------------------------
-
 home_tab <- tabPanel(
   "Home",
   div(
@@ -47,16 +58,26 @@ home_tab <- tabPanel(
     column(4,
            h4("Tell us what you think"),
            p("Placeholder for MS Forms")
-           ),
+    ),
     column(2)
-  )
+  ),
+  site_footer
 )
 
 program_tab <- tabPanel(
   "Program",
+  value = "program",
   h2("This Year's Program", class = "section-title"),
-  p("Forthcoming."),
-  tags$em("Forthcoming.")
+  fluidRow(
+    column(12,
+           DTOutput("program_table")
+    )
+  ),
+  fluidRow(
+    column(12,
+           site_footer
+    )
+  )
 )
 
 archive_tab <- tabPanel(
@@ -68,13 +89,14 @@ archive_tab <- tabPanel(
       width = 3,
       selectInput("year_filter", "Year", choices = c("All years", years)),
       textInput("search_filter", "Search title or speaker", placeholder = "e.g. Shiny, Jane Doe"),
-      textInput("topic_filter", "Search topic", placeholder = "e.g. REF"),
+      selectInput("topic_filter", "Topic", choices = c("All topics", all_topics)),
     ),
     mainPanel(
       width = 9,
       uiOutput("session_list")
     )
-  )
+  ),
+  site_footer
 )
 
 about_tab <- tabPanel(
@@ -83,18 +105,25 @@ about_tab <- tabPanel(
   p("Capturing Creativity was conceptualised by Claire Drake (Bath Spa University), who saw the need for reporting more robustly on Arts creative practice research outputs. Together with Gareth Cole (who was a Loughborough University at the time, now at Exeter University), they hosted the first seminar series in 2023."),
   p("The success of the first year led to a repeat in 2024 and 2025, with Lara Skelly (Loughborough Univeristy) taking over from Cole in 2025. Katie Fraser (Loughborough University) joins the team in 2026."),
   h4("Contact"),
-  p("Claire Drake via <repositories at bathspa.ac.uk>")
+  p("Claire Drake via <repositories at bathspa.ac.uk>"),
+  site_footer
 )
 
 # ---- Page --------------------------------------------------------------
 
 ui <- page_navbar(
-  title = conference_name,
   theme = bs_theme(version = 5, base_font = font_google("Inter")),
-  header = tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+  id = "main_nav",
+  
+  header = tagList(
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+    tags$img(src = "banner.png", class = "banner-img", alt = "Conference banner")
+  ),
+  
   home_tab,
   program_tab,
   archive_tab,
   about_tab,
-  id = "main_nav"
+
 )
+

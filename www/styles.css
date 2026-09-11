@@ -1,0 +1,25 @@
+.footer {
+  margin-top: 40px;
+  padding: 16px 24px;
+  border-top: 1px solid #ddd;
+  font-size: 0.85em;
+  color: #555;
+  text-align: center;
+}
+
+.footer a {
+  color: #555;
+  text-decoration: underline;
+}
+
+.banner {
+  background-image: url("banner.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.session-card {
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
