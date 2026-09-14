@@ -10,15 +10,16 @@ sessions <- read.csv("sessions.csv", stringsAsFactors = FALSE, fileEncoding = "U
 program <- read.csv("program.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
 
 # Build a full DOI link whether the column holds a bare DOI (10.xxxx/...)
-# or an already-complete URL.
+# or an already-complete URL. Returns NA if there's no DOI yet.
 doi_link <- function(doi) {
+  if (!nzchar(doi)) return(NA_character_)
   if (grepl("^https?://", doi, ignore.case = TRUE)) doi else paste0("https://doi.org/", doi)
 }
+
 server <- function(input, output, session) {
   
-
-# helper for Open button - embed link -------------------------------------
-
+  # helper for Open button - embed link -------------------------------------
+  
   observeEvent(input$open_embed, {
     showModal(modalDialog(
       title = input$open_embed$title,
@@ -35,9 +36,8 @@ server <- function(input, output, session) {
     ))
   })
   
-
-# -------------------------------------------------------------------------
-
+  # -------------------------------------------------------------------------
+  
   output$program_table <- renderDT({
     d <- program
     
@@ -74,16 +74,24 @@ server <- function(input, output, session) {
   
   filtered <- reactive({
     d <- sessions
+    
     if (!is.null(input$year_filter) && input$year_filter != "All years") {
       d <- d[d$year == as.integer(input$year_filter), ]
     }
+    
+    # Topics can be multi-valued per row (semicolon-separated), so match
+    # against the split set rather than the raw string.
     if (!is.null(input$topic_filter) && input$topic_filter != "All topics") {
-      d <- d[d$topic == input$topic_filter, ]
+      d <- d[sapply(strsplit(d$topic, ";"), function(t) {
+        input$topic_filter %in% trimws(t)
+      }), ]
     }
+    
     if (nzchar(input$search_filter)) {
       q <- tolower(input$search_filter)
       d <- d[grepl(q, tolower(d$title)) | grepl(q, tolower(d$speakers)), ]
     }
+    
     d
   })
   
@@ -93,8 +101,8 @@ server <- function(input, output, session) {
     
     cards <- lapply(seq_len(nrow(d)), function(i) {
       row <- d[i, ]
-      link <- doi_link(row$doi)
-      has_doi <- !is.na(link)
+      has_doi <- nzchar(row$doi)
+      link <- if (has_doi) doi_link(row$doi) else NA
       
       title_el <- if (has_doi) {
         tags$a(href = link, target = "_blank", row$title)

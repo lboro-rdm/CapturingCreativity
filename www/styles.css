@@ -23,3 +23,16 @@
   padding: 16px;
 }
 
+.funder-logo-box {
+  display: inline-block !important;
+  width: fit-content;
+  background-color: #000;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.funder-logo {
+  display: block;
+  max-width: 240px;
+  height: auto;
+}
