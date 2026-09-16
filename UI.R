@@ -103,7 +103,7 @@ archive_tab <- tabPanel(
 about_tab <- tabPanel(
   "About",
   h2("About Capturing Creativity", class = "section-title"),
-  p("Capturing Creativity was conceptualised by Claire Drake (Bath Spa University), who saw the need for reporting more robustly on Arts creative practice research outputs. Together with Gareth Cole (who was a Loughborough University at the time, now at Exeter University), they hosted the first seminar series in 2023."),
+  p("Capturing Creativity was conceptualised by Claire Drake (Bath Spa University), who saw the need for reporting more robustly on Arts creative practice research outputs. Together with Gareth Cole (who was at Loughborough University at the time, now at Exeter University), they hosted the first seminar series in 2023."),
   p("The success of the first year led to a repeat in 2024 and 2025, with Lara Skelly (Loughborough University) taking over from Gareth Cole in 2025. Katie Fraser (Loughborough University) joins the team in 2026."),
   h2("Contact"),
   p("Claire Drake via <repositories at bathspa.ac.uk>"),
