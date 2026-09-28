@@ -72,6 +72,10 @@ server <- function(input, output, session) {
     updateTabsetPanel(session, "main_nav", selected = "archive")
   })
   
+  observeEvent(input$goto_program, {
+    updateNavbarPage(session, "main_nav", selected = "program")
+  })
+  
   filtered <- reactive({
     d <- sessions
     

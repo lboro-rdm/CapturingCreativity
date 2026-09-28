@@ -38,7 +38,8 @@ home_tab <- tabPanel(
     ),
     column(4,
            h4("Who should attend?"),
-           p("Librarians, REF support staff, and practice researchers in the UK and beyond.")
+           p("Librarians, REF support staff, and practice researchers in the UK and beyond."),
+           actionButton("goto_program", "View this year's program", class = "btn-sm")
     ),
     column(4,
            h4("Browse past talks"),
