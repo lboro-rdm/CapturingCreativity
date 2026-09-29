@@ -44,7 +44,7 @@ home_tab <- tabPanel(
     column(4,
            h4("Browse past talks"),
            p("Slides and recordings from 2023 onwards. Browse by year, speaker or topic."),
-           actionButton("goto_archive", "Go to Archive", class = "btn-sm")
+           actionButton("goto_archive", "Go to archive", class = "btn-sm")
     )
   ),
   fluidRow(
@@ -117,7 +117,7 @@ about_tab <- tabPanel(
     tags$li("Sievert C, Cheng J, Aden-Buie G (2024). ", tags$em("bslib: Custom 'Bootstrap' 'Sass' Themes for 'shiny' and 'rmarkdown'"), ". R package version 0.8.0, ", tags$a(href = "https://CRAN.R-project.org/package=bslib", "https://CRAN.R-project.org/package=bslib")),
     tags$li("Xie Y, Cheng J, Tan X (2024). ", tags$em("DT: A Wrapper of the JavaScript Library 'DataTables'"), ". R package version 0.33, ", tags$a(href = "https://CRAN.R-project.org/package=DT", "https://CRAN.R-project.org/package=DT"))
   ),
-  p("Last updated 2026-09-14"),
+  p("Last updated 2026-09-29"),
   h3("Funding"),
   p("This website was funded by CaSDaR ", tags$a(href = "https://casdar.ac.uk/", target = "_blank", "https://casdar.ac.uk/")),
   div(
