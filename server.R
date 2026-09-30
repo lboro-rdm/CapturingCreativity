@@ -1,6 +1,7 @@
 library(shiny)
 library(bslib)
 library(DT)
+library(tidyverse)
 
 # ---- Data -----------------------------------------------------------------
 # Add new talks (past or upcoming) by editing sessions.csv.
@@ -8,6 +9,8 @@ library(DT)
 # the archive will automatically show a "Coming soon" badge instead.
 sessions <- read.csv("sessions.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
 program <- read.csv("program.csv", stringsAsFactors = FALSE, fileEncoding = "UTF-8")
+
+program$date <- format(as.Date(program$date, format = "%m/%d/%Y"), "%Y-%m-%d")
 
 # Build a full DOI link whether the column holds a bare DOI (10.xxxx/...)
 # or an already-complete URL. Returns NA if there's no DOI yet.

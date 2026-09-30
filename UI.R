@@ -39,7 +39,7 @@ home_tab <- tabPanel(
     column(4,
            h4("Who should attend?"),
            p("Librarians, REF support staff, and practice researchers in the UK and beyond."),
-           actionButton("goto_program", "View this year's program", class = "btn-sm")
+           actionButton("goto_program", "View this year's programme", class = "btn-sm")
     ),
     column(4,
            h4("Browse past talks"),
@@ -67,9 +67,9 @@ home_tab <- tabPanel(
 )
 
 program_tab <- tabPanel(
-  "Program",
+  "2026 Programme",
   value = "program",
-  h2("This Year's Program", class = "section-title"),
+  h2("This Year's Programme", class = "section-title"),
   fluidRow(
     column(12,
            DTOutput("program_table")
