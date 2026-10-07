@@ -79,6 +79,10 @@ server <- function(input, output, session) {
     updateNavbarPage(session, "main_nav", selected = "program")
   })
   
+  observeEvent(input$goto_drcompetition, {
+    nav_select("main_nav", "drcompetition")
+  })
+  
   filtered <- reactive({
     d <- sessions
     

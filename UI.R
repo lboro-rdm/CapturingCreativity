@@ -48,7 +48,12 @@ home_tab <- tabPanel(
     )
   ),
   fluidRow(
-    column(2),
+    column(4,
+           h4("Doctoral Researcher Competition"),
+           p("Submissions close midnight 10 January 2027."),
+           p("Sponsored by ", a("CaSDaR", href = "https://casdar.ac.uk/", target = "_blank")),
+           actionButton("goto_drcompetition", "Read more", class = "btn-sm")
+           ),
     column(4,
            h4("Keep the conversation going"),
            p(tags$a(href = "https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=ARTS-PRACTICE-LED-RESEARCH",
@@ -60,8 +65,7 @@ home_tab <- tabPanel(
            h4("Tell us what you think"),
            p(tags$a(href = "https://forms.cloud.microsoft/e/jWgetgteMi",
                     target = "_blank", "Give us your feedback"))
-    ),
-    column(2)
+    )
   ),
   site_footer
 )
@@ -80,6 +84,110 @@ program_tab <- tabPanel(
            site_footer
     )
   )
+)
+
+drcompetition_tab <- tabPanel(
+  "Doctoral Researcher Competition",
+  value = "drcompetition",
+  h2("Capturing Creativity Doctoral Research Competition 2027", class = "section-title"),
+  h3("Call for Entries"),
+  
+  div(
+    class = "alert alert-info",
+    strong("Submissions close midnight 10 January 2027. "),
+    "Submit ",
+    a("here", href = "https://forms.cloud.microsoft/e/CuyBBg3gCe", target = "_blank", class = "alert-link"),
+    "."
+  ),
+  
+  h4("Are you undertaking creative practice research as part of your PhD?"),
+  p("The Capturing Creativity Seminar Series invites doctoral researchers to enter a competition celebrating innovative creative practice research and showcasing how institutions support, preserve, and share practice research outputs."),
+  p("We are seeking engaging five-minute video presentations that introduce your research and demonstrate how the practice research element of your work is documented, preserved, and made discoverable through institutional research repositories, data repositories, or related research infrastructure."),
+  p("This competition aims to highlight excellent doctoral research while building greater awareness of the challenges and opportunities involved in capturing and sharing creative practice research."),
+  
+  h4("What to submit"),
+  tags$ol(
+    tags$li(
+      strong("A video presentation"),
+      p(),
+      tags$ul(
+        tags$li("Maximum length: 5 minutes"),
+        tags$li("Format: MP4 preferred"),
+        tags$li("Audience: researchers, repository specialists, librarians, and the wider public"),
+        tags$li("Shared via a Repository link"),
+      ),
+      p(),
+      p("Your presentation should:"),
+      tags$ul(
+        tags$li("Introduce your doctoral research project."),
+        tags$li("Explain the practice component of your research."),
+        tags$li("Reflect on how practice research outputs are documented, preserved, and shared."),
+        tags$li("Describe how your institution supports showcasing practice research outputs.")
+      ),
+      p()
+    ),
+    tags$li(
+      strong("Written summary"),
+      p(),
+      tags$ul(
+        tags$li("Project title"),
+        tags$li("Description of practice research outputs - 250 words max"),
+        tags$li("Repository or infrastructure used to support dissemination and preservation"),
+        tags$li("Keywords"),
+        tags$li("Funding statement (if relevant)"),
+        tags$li("Copyright licence if not CC-BY-NC"),
+        p()
+          )
+    ),
+    tags$li(
+      strong("Your details"),
+      p(),
+      tags$ul(
+        tags$li("Name and surname"),
+        tags$li("Email address"),
+        tags$li("Institution"),
+        tags$li("ORCID (Optional)"),
+        tags$li("Your supervisor's name and email address"),
+        
+        
+      )
+    )
+  ),
+  
+  h4("Eligibility"),
+  tags$ul(
+    tags$li("Open to doctoral researchers registered at a UK higher education institution at the time of submission."),
+    tags$li("Participants must be undertaking or have recently completed research involving a significant creative practice component."),
+    tags$li("Collaborative submissions may be accepted where appropriate, but one lead entrant should be identified.")
+  ),
+  
+  h4("Prizes"),
+  tags$ul(
+    tags$li("First Prize: \u00a3500"),
+    tags$li("Runner-up Prize: \u00a3250"),
+    tags$li("Runner-up Prize: \u00a3250")
+  ),
+  
+  h4("Showcase Opportunity"),
+  p("A selection of shortlisted entries will be screened during a Capturing Creativity webinar event in 2027."),
+  p("Winning and shortlisted submissions will also be featured as part of the project website and deposited in the Loughborough University Repository."),
+  
+  h4("Contact"),
+  p("Lara Skelly at Loughborough University ",
+    tags$a(href = "mailto:RDM@lboro.ac.uk", "RDM@lboro.ac.uk")),
+  
+  p("With thanks to ",
+    tags$a(href = "https://casdar.ac.uk/", target = "_blank", "CaSDaR"),
+    " for the sponsorship."),
+  div(
+    class = "funder-logo-box",
+    tags$a(
+      href = "https://casdar.ac.uk/",
+      target = "_blank",
+      tags$img(src = "casdar_logo.png", alt = "CaSDaR logo", class = "funder-logo")
+    )
+  ),
+site_footer
 )
 
 archive_tab <- tabPanel(
@@ -144,6 +252,7 @@ ui <- page_navbar(
   
   home_tab,
   program_tab,
+  drcompetition_tab,
   archive_tab,
   about_tab,
   

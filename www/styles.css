@@ -36,3 +36,13 @@
   max-width: 240px;
   height: auto;
 }
+
+.deadline-box {
+  border: 2px solid #0d6efd;
+  border-left-width: 8px;
+  background-color: #f1f6ff;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
