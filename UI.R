@@ -114,7 +114,7 @@ drcompetition_tab <- tabPanel(
         tags$li("Maximum length: 5 minutes"),
         tags$li("Format: MP4 preferred"),
         tags$li("Audience: researchers, repository specialists, librarians, and the wider public"),
-        tags$li("Shared via a Repository link"),
+        tags$li("Please share a link to your presentation from a repository of your choice - we will feature winning and shortlisted submissions as part of the Capturing Creativity website and as part of a collection deposited in the Loughborough University Repository."),
       ),
       p(),
       p("Your presentation should:"),
