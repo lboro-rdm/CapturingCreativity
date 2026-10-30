@@ -219,13 +219,14 @@ about_tab <- tabPanel(
   h2("About this website"),
   p("This website was created by Lara Skelly. The source code can be found on ",
     tags$a(href = "https://github.com/lboro-rdm/CapturingCreativity.git", target = "_blank", "GitHub")),
-  p("It was created with the following packages:"),
+  p("While we do not collect any cookies, we do use Google Analytics to track usage."),
+  p("This website was created with the following packages:"),
   tags$ul(
     tags$li("Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, McPherson J, Dipert A, Borges B (2024). ", tags$em("shiny: Web Application Framework for R"), ". R package version 1.9.1, ", tags$a(href = "https://CRAN.R-project.org/package=shiny", "https://CRAN.R-project.org/package=shiny")),
     tags$li("Sievert C, Cheng J, Aden-Buie G (2024). ", tags$em("bslib: Custom 'Bootstrap' 'Sass' Themes for 'shiny' and 'rmarkdown'"), ". R package version 0.8.0, ", tags$a(href = "https://CRAN.R-project.org/package=bslib", "https://CRAN.R-project.org/package=bslib")),
     tags$li("Xie Y, Cheng J, Tan X (2024). ", tags$em("DT: A Wrapper of the JavaScript Library 'DataTables'"), ". R package version 0.33, ", tags$a(href = "https://CRAN.R-project.org/package=DT", "https://CRAN.R-project.org/package=DT"))
   ),
-  p("Last updated 2026-09-29"),
+  p("Last updated 2026-10-30"),
   h3("Funding"),
   p("This website was funded by CaSDaR ", tags$a(href = "https://casdar.ac.uk/", target = "_blank", "https://casdar.ac.uk/")),
   div(
@@ -246,7 +247,18 @@ ui <- page_navbar(
   id = "main_nav",
   
   header = tagList(
-    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
+      HTML("
+        <script async src='https://www.googletagmanager.com/gtag/js?id=G-WBX0FLPH7Y'></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        </script>
+      ")
+    ),
     tags$img(src = "banner.png", class = "banner-img", alt = "Conference banner")
   ),
   
